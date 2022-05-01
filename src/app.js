@@ -14,11 +14,8 @@ app.use("/reviews", reviewsRouter);
 app.use("/theaters", theatersRouter);
 
 app.use((req, res, next) => {
-	next({
-		status: 404,
-		message: "That page doesn't exist."
-	});
-});
+	next({ status: 404, message: `Not found: ${req.originalUrl}` });
+  });
 
 app.use((err, req, res, next) => {
 	const { status = 500, message = "Something went wrong on our end!" } = err;
